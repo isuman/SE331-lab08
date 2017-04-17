@@ -8,6 +8,4 @@ export class Student{
 	featured:boolean;
 	penAmount:number;
 	description:string;
-
-
 }

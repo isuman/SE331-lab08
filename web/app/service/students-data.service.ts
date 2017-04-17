@@ -14,7 +14,7 @@ export class StudentsDataService {
   }
 
   getStudent(id:number){
-   return null;
+    return null;
   }
 
   addStudent(student:Student,imageFile:any){
