@@ -2,19 +2,16 @@ package camt.cbsd.services;
 
 import camt.cbsd.dao.StudentDao;
 import camt.cbsd.entity.Student;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Service;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.List;
@@ -41,7 +38,10 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Student findById(long id) {
-        return studentDao.findById(id);
+        studentDao.findById(id);
+        Student student=studentDao.findById(id);
+        Hibernate.initialize(student.getEnrolledCourse());
+        return student;
     }
 
     @Override
